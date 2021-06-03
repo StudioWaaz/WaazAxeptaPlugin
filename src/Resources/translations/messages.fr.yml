@@ -1,0 +1,9 @@
+waaz:
+    axepta:
+        environment: Environnement
+        hmac_key: Clé HMAC
+        blowfish_key: Clé de chiffrement Blowfish
+        merchant_id: ID commerçant
+        gateway_label: Axepta BNP Paribas
+        production: Production
+        test: Test

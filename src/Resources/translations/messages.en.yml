@@ -1,0 +1,10 @@
+waaz:
+    axepta:
+        environment: Environment
+        access_key: Secure key
+        merchant_id: Merchant ID
+        key_version: Key version
+        gateway_label: Axepta
+        production: Production
+        test: Test
+        simulation: Simulation

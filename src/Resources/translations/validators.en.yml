@@ -1,0 +1,10 @@
+waaz:
+    payline:
+        merchant_id:
+            not_blank: Please enter the Merchant ID.
+        blowfish_key:
+            not_blank: Please enter the Key Blowfish.
+        hmac_key:
+            not_blank: Please enter the Key HMAC.
+        channel:
+            currency: The only allowed currency is EUR.

@@ -1,0 +1,10 @@
+waaz:
+    payline:
+        merchant_id:
+            not_blank: Entrez l'identifiant du marchand.
+        blowfish_key:
+            not_blank: Veuillez entrer la clé de chiffrement Blowfish.
+        hmac_key:
+            not_blank: Veuillez entrer la clé HMAC.
+        channel:
+            currency: La seule devise autorisée est EUR.

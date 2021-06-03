@@ -1,0 +1,47 @@
+services:
+    waaz.axepta.form.type.gateway_configuration:
+        class: Waaz\AxeptaPlugin\Form\Type\AxeptaGatewayConfigurationType
+        public: true
+        tags:
+            - { name: sylius.gateway_configuration_type, type: axepta, label: waaz.axepta.gateway_label }
+            - { name: form.type }
+
+    waaz.axepta.gateway_factory:
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        public: true
+        arguments: [Waaz\AxeptaPlugin\AxeptaGatewayFactory]
+        tags:
+            - { name: payum.gateway_factory_builder, factory: axepta }
+
+    waaz.axepta.action.capture:
+        class: Waaz\AxeptaPlugin\Action\CaptureAction
+        public: true
+        arguments:
+            - '@payum'
+            - '@waaz.axepta.bridge.axepta_bridge'
+            - '@router'
+        tags:
+            - { name: payum.action, factory: axepta, alias: payum.action.capture }
+
+    waaz.axepta.action.notify:
+        class: Waaz\AxeptaPlugin\Action\NotifyAction
+        public: true
+        arguments:
+            - '@sm.factory'
+        tags:
+            - { name: payum.action, factory: axepta, alias: payum.action.notify }
+
+    waaz.axepta.action.status:
+        class: Waaz\AxeptaPlugin\Action\StatusAction
+        public: true
+        arguments:
+            - '@request_stack'
+        tags:
+            - { name: payum.action, factory: axepta, alias: payum.action.status }
+
+    waaz.axepta.bridge.axepta_bridge:
+        class: Waaz\AxeptaPlugin\Bridge\AxeptaBridge
+        public: true
+        arguments:
+            - '@request_stack'
+            - '%kernel.root_dir%'
