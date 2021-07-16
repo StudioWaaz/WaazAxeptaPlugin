@@ -61,11 +61,15 @@ final class AxeptaBridge implements AxeptaBridgeInterface
      */
     public function paymentVerification()
     {
+        // @Todo
         if ($this->isGetMethod()) {
 
-            $postdata = $this->getQueryData();
-
-            return $postdata;
+            $queryData = $this->getQueryData();
+            $paymentResponse = $this->createAxepta($this->hmacKey);
+            $paymentResponse->setCryptKey($this->blowfishKey);
+            $paymentResponse->setResponse($queryData);
+            
+            return ($paymentResponse->isValid() && $paymentResponse->isSuccessful());
         }
 
         return false;

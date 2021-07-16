@@ -57,30 +57,49 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
 
         if ($this->axeptaBridge->paymentVerification()) {
 
-          $accessKey = $this->axeptaBridge->getAccessKey();
+            /** @var PaymentInterface $payment */
+            $payment = $request->getFirstModel();
 
-          $axepta = $this->axeptaBridge->createAxepta($accessKey);
+            Assert::isInstanceOf($payment, PaymentInterface::class);
 
-          $axepta->setFields([
-            'merchant_id' => $this->axeptaBridge->getMerchantId(),
-            'hmac_key' => $this->axeptaBridge->getHmacKey()
-          ]);
-          $params['token'] = $this->axeptaBridge->paymentVerification();
-
-          $responsePayment = $axepta->getPaymentDetails();
-
-          if($responsePayment === 'OK'){
-
-              /** @var PaymentInterface $payment */
-              $payment = $request->getFirstModel();
-
-              Assert::isInstanceOf($payment, PaymentInterface::class);
-
-              $this->stateMachineFactory->get($payment, PaymentTransitions::GRAPH)->apply(PaymentTransitions::TRANSITION_COMPLETE);
-
-          }
+            $this->stateMachineFactory->get($payment, PaymentTransitions::GRAPH)->apply(PaymentTransitions::TRANSITION_COMPLETE);
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    // public function execute($request)
+    // {
+    //     /** @var $request Notify */
+    //     RequestNotSupportedException::assertSupports($this, $request);
+
+    //     if ($this->axeptaBridge->paymentVerification()) {
+
+    //       $accessKey = $this->axeptaBridge->getAccessKey();
+
+    //       $axepta = $this->axeptaBridge->createAxepta($accessKey);
+
+    //       $axepta->setFields([
+    //         'merchant_id' => $this->axeptaBridge->getMerchantId(),
+    //         'hmac_key' => $this->axeptaBridge->getHmacKey()
+    //       ]);
+    //       $params['token'] = $this->axeptaBridge->paymentVerification();
+
+    //       $responsePayment = $axepta->getPaymentDetails();
+
+    //       if($responsePayment === 'OK'){
+
+    //           /** @var PaymentInterface $payment */
+    //           $payment = $request->getFirstModel();
+
+    //           Assert::isInstanceOf($payment, PaymentInterface::class);
+
+    //           $this->stateMachineFactory->get($payment, PaymentTransitions::GRAPH)->apply(PaymentTransitions::TRANSITION_COMPLETE);
+
+    //       }
+    //     }
+    // }
 
     /**
      * {@inheritDoc}

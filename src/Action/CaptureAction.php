@@ -89,22 +89,8 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         $transactionReference = isset($model['transactionReference']) ? $model['transactionReference'] : null;
 
-        if ($transactionReference !== null) {
-
-            if ($this->axeptaBridge->isGetMethod()) {
-
-                $model['status'] = $this->axeptaBridge->paymentVerification() ?
-                    PaymentInterface::STATE_COMPLETED : PaymentInterface::STATE_CANCELLED;
-
-                $request->setModel($model);
-
-                return;
-            }
-
-            if ($model['status'] === PaymentInterface::STATE_COMPLETED) {
-
-                return;
-            }
+        if ($transactionReference !== null && $model['status'] === PaymentInterface::STATE_COMPLETED) {
+            return;
         }
 
         $notifyToken = $this->createNotifyToken($token->getGatewayName(), $token->getDetails());
@@ -129,6 +115,8 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         $transactionReference = $payment->getOrder()->getId();
 
+        $ref = $payment->getOrder()->getNumber();
+
         $model['transactionReference'] = $transactionReference;
 
         $simplePayment = new SimplePayment(
@@ -142,7 +130,8 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
             $transactionReference,
             $automaticResponseUrl,
             $cancelUrl,
-            $failureUrl
+            $failureUrl,
+            $ref
         );
 
         $request->setModel($model);

@@ -30,13 +30,6 @@ final class AxeptaGatewayConfigurationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('environment', ChoiceType::class, [
-            //     'choices' => [
-            //         'waaz.axepta.production' => 'PROD',
-            //         'waaz.axepta.test' => 'HOMO',
-            //     ],
-            //     'label' => 'waaz.axepta.environment',
-            // ])
             ->add('merchant_id', TextType::class, [
               'label' => 'waaz.axepta.merchant_id',
               'constraints' => [
