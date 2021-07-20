@@ -438,7 +438,7 @@ class Axepta
 				$parameters[$key]=$value;
 			}
 		} else {
-			$parameters[self::DATA_FIELD] = $httpRequest[self::DATA_FIELD];
+			$parameters[self::DATA_FIELD] = trim($httpRequest[self::DATA_FIELD]);
 			$this->dataString = $this->decrypt(hex2bin($parameters[self::DATA_FIELD]),$this->cryptKey);
 			$parameters['Debug'] = $this->dataString;
 			$dataParams = explode('&', $this->dataString);

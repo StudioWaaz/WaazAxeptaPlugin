@@ -32,7 +32,7 @@ interface AxeptaBridgeInterface
     /**
      * @return bool
      */
-    public function isGetMethod();
+    public function isPostMethod();
 
     /**
      * @return string

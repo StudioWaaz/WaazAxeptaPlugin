@@ -62,7 +62,7 @@ final class AxeptaBridge implements AxeptaBridgeInterface
     public function paymentVerification()
     {
         // @Todo
-        if ($this->isGetMethod()) {
+        if ($this->isPostMethod()) {
 
             $queryData = $this->getQueryData();
             $paymentResponse = $this->createAxepta($this->hmacKey);
@@ -78,12 +78,12 @@ final class AxeptaBridge implements AxeptaBridgeInterface
     /**
      * {@inheritDoc}
      */
-    public function isGetMethod()
+    public function isPostMethod()
     {
 
         $currentRequest = $this->requestStack->getCurrentRequest();
 
-        return $currentRequest->isMethod('GET');
+        return $currentRequest->isMethod('POST');
     }
 
     /**
@@ -93,7 +93,7 @@ final class AxeptaBridge implements AxeptaBridgeInterface
      {
        $currentRequest = $this->requestStack->getCurrentRequest();
 
-       return $currentRequest->query->all();
+       return $currentRequest->request->all();
      }
 
     /**
