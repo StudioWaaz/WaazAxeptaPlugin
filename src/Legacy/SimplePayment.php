@@ -114,13 +114,13 @@ final class SimplePayment
 		$this->axepta->setAmount($this->amount);
 		$this->axepta->setCurrency($this->currency);
 		$this->axepta->setRefNr($this->transactionReference);
-		
-		$this->axepta->setURLSuccess($this->targetUrl);    
-		$this->axepta->setURLFailure($this->failureUrl);    
-		$this->axepta->setURLNotify($this->automaticResponseUrl); 
+        $this->axepta->setMsgVer();
+		$this->axepta->setURLSuccess($this->targetUrl);
+		$this->axepta->setURLFailure($this->failureUrl);
+		$this->axepta->setURLNotify($this->automaticResponseUrl);
 		
 		$this->axepta->setURLBack($this->cancelUrl);    
-		$this->axepta->setReponse('encrypt');    
+		$this->axepta->setResponseParam('encrypt');    
 		$this->axepta->setLanguage('fr');
         $this->axepta->setOrderDesc('Commande '.$this->ref);
 		
@@ -133,13 +133,13 @@ final class SimplePayment
 		$len = $this->axepta->getLen();		// retrieve Crypt length
         
         $response = "<html><body><form name=\"redirectForm\" method=\"GET\" action=\"" . $this->axepta->getUrl() . "\">" .
-  			 "<input type=\"hidden\" name=\"MerchantID\" value=\"". $this->axepta->getMerchantID() . "\">" .
+  			 "<input type=\"hidden\" name=\"MerchantID\" value=\"". $this->axepta->getParam('MerchantID') . "\">" .
   			 "<input type=\"hidden\" name=\"Len\" value=\"". $this->axepta->getLen() . "\">" .
   			 "<input type=\"hidden\" name=\"Data\" value=\"". $this->axepta->getBfishCrypt() . "\">" .
-  			 "<input type=\"hidden\" name=\"URLNotify\" value=\"". $this->axepta->getURLNotify() . "\">" .
-  			 "<input type=\"hidden\" name=\"URLBack\" value=\"". $this->axepta->getURLBack() . "\">" .
-  			 "<input type=\"hidden\" name=\"Amount\" value=\"". $this->axepta->getAmount()/100 . "\">" .
-  			 "<input type=\"hidden\" name=\"TransID\" value=\"". $this->axepta->getTransID() . "\">" .
+  			 "<input type=\"hidden\" name=\"URLNotify\" value=\"". $this->axepta->getParam('URLNotify') . "\">" .
+  			 "<input type=\"hidden\" name=\"URLBack\" value=\"". $this->axepta->getParam('URLBack') . "\">" .
+  			 "<input type=\"hidden\" name=\"Amount\" value=\"". $this->axepta->getParam('Amount')/100 . "\">" .
+  			 "<input type=\"hidden\" name=\"TransID\" value=\"". $this->axepta->getParam('TransID') . "\">" .
   			 "<noscript><input type=\"submit\" name=\"Go\" value=\"Click to continue\"/></noscript> </form>" .
   			 "<script type=\"text/javascript\">document.redirectForm.submit(); </script>" .
   			 "</body></html>";

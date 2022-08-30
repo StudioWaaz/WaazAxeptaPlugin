@@ -53,7 +53,10 @@ final class AxeptaBridge implements AxeptaBridgeInterface
      */
     public function createAxepta($hmacKey)
     {
-        return new Axepta($hmacKey);
+        $axepta = new Axepta();
+        $axepta->setSecretKey($hmacKey);
+        $axepta->setMsgVer();
+        return $axepta;
     }
 
     /**
