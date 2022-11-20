@@ -25,15 +25,15 @@ class Axepta
 
     public const DATA_FIELD = 'Data';
 
-    protected $secretKey;
+    protected ?string $secretKey = null;
 
-    protected $cryptKey;
+    protected ?string $cryptKey = null;
 
-    protected $pspURL = self::PAYSSL;
+    protected string $pspURL = self::PAYSSL;
 
     protected $parameters = [];
 
-    protected $pspFields = [
+    protected array $pspFields = [
         'Debug',
         'PayID',
         'TransID',
@@ -109,11 +109,11 @@ class Axepta
         'Card',
     ];
 
-    protected $QHMACFields = ['PayID', 'TransID', 'MerchantID', 'Amount', 'Currency'];
+    protected array $QHMACFields = ['PayID', 'TransID', 'MerchantID', 'Amount', 'Currency'];
 
-    protected $RHMACFields = ['PayID', 'TransID', 'MerchantID', 'Status', 'Code'];
+    protected array $RHMACFields = ['PayID', 'TransID', 'MerchantID', 'Status', 'Code'];
 
-    protected $BFishFields = [
+    protected array $BFishFields = [
         'PayID',
         'TransID',
         'Amount',
@@ -165,9 +165,9 @@ class Axepta
         'Card',
     ];
 
-    protected $requiredFields = ['MerchantID', 'TransID', 'Amount', 'Currency', 'OrderDesc'];
+    protected array $requiredFields = ['MerchantID', 'TransID', 'Amount', 'Currency', 'OrderDesc'];
 
-    protected $allowedLanguages = ['nl', 'fr', 'de', 'it', 'es', 'cy', 'en'];
+    protected array $allowedLanguages = ['nl', 'fr', 'de', 'it', 'es', 'cy', 'en'];
 
     /**
      * Set the Merchant ID

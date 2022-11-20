@@ -19,25 +19,13 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 final class AxeptaBridge implements AxeptaBridgeInterface
 {
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
-    /**
-     * @var string
-     */
-    private $hmacKey;
+    private ?string $hmacKey = null;
 
-    /**
-     * @var string
-     */
-    private $merchantId;
+    private ?string $merchantId = null;
 
-    /**
-     * @var string
-     */
-    private $blowfishKey;
+    private ?string $blowfishKey = null;
 
 
     /**

@@ -22,10 +22,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 final class StatusAction implements ActionInterface
 {
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
     /**
      * @param RequestStack $requestStack

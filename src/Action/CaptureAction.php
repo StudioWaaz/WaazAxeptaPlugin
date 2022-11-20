@@ -32,20 +32,11 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 {
     use GatewayAwareTrait;
 
-    /**
-     * @var Payum
-     */
-    private $payum;
+    private Payum $payum;
 
-    /**
-     * @var AxeptaBridgeInterface
-     */
-    private $axeptaBridge;
+    private AxeptaBridgeInterface $axeptaBridge;
 
-    /**
-     * @var UrlGeneratorInterface
-     */
-     private $router;
+    private UrlGeneratorInterface $router;
 
     /**
      * @param Payum $payum

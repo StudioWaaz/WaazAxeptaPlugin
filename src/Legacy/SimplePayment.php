@@ -17,10 +17,7 @@ use Payum\Core\Reply\HttpResponse;
  */
 final class SimplePayment
 {
-    /**
-     * @var Axepta|object
-     */
-    private $axepta;
+    private Axepta $axepta;
 
     /**
      * @var string

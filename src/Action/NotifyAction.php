@@ -29,15 +29,9 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface
 {
     use GatewayAwareTrait;
 
-    /**
-     * @var AxeptaBridgeInterface
-     */
-    private $axeptaBridge;
+    private ?AxeptaBridgeInterface $axeptaBridge = null;
 
-    /**
-     * @var FactoryInterface
-     */
-    private $stateMachineFactory;
+    private FactoryInterface $stateMachineFactory;
 
     /**
      * @param FactoryInterface $stateMachineFactory
