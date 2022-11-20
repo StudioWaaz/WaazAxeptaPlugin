@@ -69,6 +69,13 @@ final class StatusAction implements ActionInterface
             return;
         }
 
+        if ($status === PaymentInterface::STATE_FAILED) {
+
+            $request->markFailed();
+
+            return;
+        }
+
         $request->markUnknown();
     }
 
