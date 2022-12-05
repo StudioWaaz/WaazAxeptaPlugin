@@ -4,7 +4,7 @@ This plugin is compliant with 3DSV2 protocol.
 After install this bundle, you need to configure following routes to accept POST requests :   
 ```
 sylius_shop_order_thank_you:
-    path: /{_locale}/thank-you
+    path: /{_locale}/order/thank-you
     methods: [GET, POST]
     defaults:
         _controller: sylius.controller.order:thankYouAction
@@ -12,7 +12,7 @@ sylius_shop_order_thank_you:
             template: "@SyliusShop/Order/thankYou.html.twig"
 
 sylius_shop_order_show:
-    path: /{_locale}/{tokenValue}
+    path: /{_locale}/order/{tokenValue}
     methods: [GET, PUT, POST]
     defaults:
         _controller: sylius.controller.order:updateAction

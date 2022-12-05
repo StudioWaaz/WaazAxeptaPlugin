@@ -56,7 +56,7 @@
     "autoload": {
         "psr-4": {
             "Waaz\\AxeptaPlugin\\": "src/",
-            "Tests\\Acme\\SyliusExamplePlugin\\": "tests/"
+            "Tests\\Waaz\\AxeptaPlugin\\": "tests/"
         }
     },
     "autoload-dev": {
