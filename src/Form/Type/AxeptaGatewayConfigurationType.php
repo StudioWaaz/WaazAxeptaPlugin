@@ -60,6 +60,7 @@ final class AxeptaGatewayConfigurationType extends AbstractType
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $data = $event->getData();
                 $data['payum.http_client'] = '@waaz.axepta.bridge.axepta_bridge';
+                $data['payum.factory_name'] = 'axepta';
                 $event->setData($data);
             })
         ;
